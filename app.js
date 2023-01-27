@@ -38,7 +38,7 @@ const config = {//oidc configuration information
     request_object_signing_alg: config.request_object_signing_alg,
     token_endpoint_auth_method: config.token_endpoint_auth_method,
     token_endpoint_auth_signing_alg: config.token_endpoint_auth_signing_alg
-  }, JSON.parse(fs.readFileSync('keys.txt', 'utf8'))
+  }, JSON.parse(fs.readFileSync('keys.json', 'utf8'))
   );
   const req_obj = await client.requestObject({
     redirect_uri: config.redirect_uri,

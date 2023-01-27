@@ -21,6 +21,8 @@ router.get('/profile', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 */
-router.get('/profile', passport.authenticate('oidc'));
+router.get('/profile', passport.authenticate('oidc'), (req, res) => {
+  res.send(req.user)
+});
 
 module.exports = router;
