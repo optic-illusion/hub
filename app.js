@@ -40,16 +40,19 @@ const config = {//oidc configuration information
     token_endpoint_auth_signing_alg: config.token_endpoint_auth_signing_alg
   }, JSON.parse(fs.readFileSync('keys.json', 'utf8'))
   );
+  const state = generators.random();
   const req_obj = await client.requestObject({
     redirect_uri: config.redirect_uri,
     scope: config.scope,
-    response_type: 'code'
+    response_type: 'code',
+    state 
   })
   const params = {
     redirect_uri: config.redirect_uri,
     grant_type: 'authorization_code',
     scope: config.scope,
     response_type: 'code',
+    state,
     request: req_obj
   };
   passport.use('oidc', new Strategy({ client, params }, (tokenset, userinfo, done) => {
